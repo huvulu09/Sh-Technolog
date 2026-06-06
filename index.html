@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>碩享科技 - 經銷商業務大廳</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { margin: 0; padding: 0; font-family: sans-serif; background: #f8fafc; }
+        .sidebar-item:hover { background: #1e293b; }
+    </style>
+</head>
+<body>
+    <div id="app" style="height: 100vh; display: flex; flex-direction: column;">
+        <!-- 這是經銷商業務大廳的容器，未來可於此處載入 React 應用程式 -->
+        <header class="p-4 bg-white shadow-sm border-b">
+            <h1 class="text-xl font-bold text-slate-800">碩享科技 - 經銷商業務大廳</h1>
+        </header>
+        
+        <main class="flex-1 p-6 flex flex-col items-center justify-center text-slate-500">
+            <div class="bg-white p-8 rounded-lg shadow-md border border-slate-200 text-center">
+                <h2 class="text-lg font-semibold mb-2">部署狀態正常</h2>
+                <p>請將此頁面部署至 Vercel 或 GitHub Pages，</p>
+                <p>即可透過 URL 嵌入 Google Sites 呈現。</p>
+            </div>
+        </main>
+    </div>
+
+    <script type="text/javascript">
+        // 總監，這是您的業務資源列表，建議直接在 Google Sites 的「資源」頁面進行連結：
+        const resources = [
+            { name: "碩享科技股份有限公司 1V.2_6.pptx", type: "PPT" },
+            { name: "2026.06月份所有產品價格表_貼牌價_6.xlsx", type: "Excel" },
+            { name: "2026.06月份所有產品價格表_零售價 V.3_6.xlsx", type: "Excel" },
+            { name: "SL-CWF08P 證書(1)_6.pdf", type: "PDF" }
+        ];
+    </script>
+</body>
+</html>
