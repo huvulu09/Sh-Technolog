@@ -4,36 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>碩享科技 - 經銷商業務大廳</title>
+    <!-- 引入必要的 CDN 函式庫 -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { margin: 0; padding: 0; font-family: sans-serif; background: #f8fafc; }
-        .sidebar-item:hover { background: #1e293b; }
-    </style>
 </head>
 <body>
-    <div id="app" style="height: 100vh; display: flex; flex-direction: column;">
-        <!-- 這是經銷商業務大廳的容器，未來可於此處載入 React 應用程式 -->
-        <header class="p-4 bg-white shadow-sm border-b">
-            <h1 class="text-xl font-bold text-slate-800">碩享科技 - 經銷商業務大廳</h1>
-        </header>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState } = React;
         
-        <main class="flex-1 p-6 flex flex-col items-center justify-center text-slate-500">
-            <div class="bg-white p-8 rounded-lg shadow-md border border-slate-200 text-center">
-                <h2 class="text-lg font-semibold mb-2">部署狀態正常</h2>
-                <p>請將此頁面部署至 Vercel 或 GitHub Pages，</p>
-                <p>即可透過 URL 嵌入 Google Sites 呈現。</p>
-            </div>
-        </main>
-    </div>
+        function App() {
+            const [activeTab, setActiveTab] = useState('home');
+            const [price, setPrice] = useState('45000');
+            const [beds, setBeds] = useState('10');
 
-    <script type="text/javascript">
-        // 總監，這是您的業務資源列表，建議直接在 Google Sites 的「資源」頁面進行連結：
-        const resources = [
-            { name: "碩享科技股份有限公司 1V.2_6.pptx", type: "PPT" },
-            { name: "2026.06月份所有產品價格表_貼牌價_6.xlsx", type: "Excel" },
-            { name: "2026.06月份所有產品價格表_零售價 V.3_6.xlsx", type: "Excel" },
-            { name: "SL-CWF08P 證書(1)_6.pdf", type: "PDF" }
-        ];
+            return (
+                <div className="flex h-screen bg-slate-100">
+                    <nav className="w-20 bg-slate-900 flex flex-col items-center py-8 text-white">
+                        <div className="mb-10 font-bold text-sky-400">碩享</div>
+                        {['首頁', '試算', 'CRM'].map(item => (
+                            <button key={item} onClick={() => setActiveTab(item)} className="p-4 hover:bg-slate-700 w-full text-xs">
+                                {item}
+                            </button>
+                        ))}
+                    </nav>
+                    <main className="flex-1 p-8 overflow-y-auto">
+                        <h1 className="text-2xl font-bold mb-6">{activeTab === '首頁' ? '歡迎回來，王總監' : activeTab + '功能'}</h1>
+                        {activeTab === '試算' ? (
+                            <div className="bg-white p-6 rounded-xl shadow border border-slate-200">
+                                <h2 className="text-lg font-bold mb-4">業務獲利試算</h2>
+                                <label className="block mb-2 text-sm">產品價格</label>
+                                <input type="number" value={price} onChange={e => setPrice(e.target.value)} className="w-full p-2 border rounded mb-4" />
+                                <label className="block mb-2 text-sm">床數</label>
+                                <input type="number" value={beds} onChange={e => setBeds(e.target.value)} className="w-full p-2 border rounded mb-4" />
+                                <div className="text-xl font-bold text-sky-600 mt-4">總獲利試算: NT$ {(price * beds * 0.3).toLocaleString()}</div>
+                            </div>
+                        ) : (
+                            <div className="text-slate-500">系統建置中...</div>
+                        )}
+                    </main>
+                </div>
+            );
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
